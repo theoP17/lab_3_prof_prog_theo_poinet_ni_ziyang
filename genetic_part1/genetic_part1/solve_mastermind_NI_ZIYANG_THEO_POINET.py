@@ -11,6 +11,15 @@ Template for exercise 1
 import mastermind as mm
 import random
 
+
+def mutation(a):
+    valid_colors = mm.get_possible_colors()
+    new_gene = random.choice(valid_colors)
+    pos = random.randint(0,len(a.chromosome)-1)
+    new_chrom = a.chromosome[0:pos] + [new_gene] + a.chromosome[pos + 1:]
+    return Individual(new_chrom, MATCH.rate_guess(new_chrom))
+
+
 class Individual:
     """Represents an Individual for a genetic algorithm"""
 
