@@ -113,6 +113,10 @@ class GASolver:
               threshold_fitness
         """
         pass  # REPLACE WITH YOUR CODE
+        for i in range(max_nb_of_generations):
+            self.evolve_for_one_generation()
+            if self._population[-1].fitness >= threshold_fitness:
+                break
 
 MATCH = mm.MastermindMatch(secret_size=4)
 
