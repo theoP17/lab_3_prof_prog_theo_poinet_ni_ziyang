@@ -12,12 +12,12 @@ import mastermind as mm
 import random
 
 
-def mutation(a):
-    valid_colors = mm.get_possible_colors()
-    new_gene = random.choice(valid_colors)
-    pos = random.randint(0,len(a.chromosome)-1)
-    new_chrom = a.chromosome[0:pos] + [new_gene] + a.chromosome[pos + 1:]
-    return Individual(new_chrom, MATCH.rate_guess(new_chrom))
+# def mutation(a):
+#     valid_colors = mm.get_possible_colors()
+#     new_gene = random.choice(valid_colors)
+#     pos = random.randint(0,len(a.chromosome)-1)
+#     new_chrom = a.chromosome[0:pos] + [new_gene] + a.chromosome[pos + 1:]
+#     return Individual(new_chrom, MATCH.rate_guess(new_chrom))
 
 
 class Individual:
@@ -87,8 +87,14 @@ class GASolver:
         x_point = random.randrange(0, len(a.chromosome)) #take a crossing point at random
         new_chrom = a.chromosome[0:x_point] + b.chromosome[x_point:] #create a new chromosome
         new_individual = Individual(new_chrom, MATCH.rate_guess(new_chrom))
+        
 
         #mutation
+        valid_colors = mm.get_possible_colors()
+        new_gene = random.choice(valid_colors)
+        pos = random.randint(0,len(a.chromosome)-1)
+        new_chrom = a.chromosome[0:pos] + [new_gene] + a.chromosome[pos + 1:]
+        
         
         pass  # REPLACE WITH YOUR CODE
 
