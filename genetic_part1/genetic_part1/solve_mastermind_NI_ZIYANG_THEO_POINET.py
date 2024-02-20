@@ -9,9 +9,7 @@ Template for exercise 1
 """
 
 import mastermind as mm
-
-
-
+import random
 
 class Individual:
     """Represents an Individual for a genetic algorithm"""
@@ -49,6 +47,10 @@ class GASolver:
 
     def reset_population(self, pop_size=50):
         """ Initialize the population with pop_size random Individuals """
+        chromosome = MATCH.generate_random_guess()
+        fitness = MATCH.rate_guess(chromosome)
+        new_individual = Individual(chromosome, fitness)
+        self._population.append(new_individual)
         pass  # REPLACE WITH YOUR CODE
 
     def evolve_for_one_generation(self):
@@ -61,6 +63,24 @@ class GASolver:
                 mutation_rate i.e., mutate it if a random value is below   
                 mutation_rate
         """
+        #chose the best 20% individuals
+        self._population.sort(reverse=True)
+        # Calculate the index up to which you want to keep the elements (20% of the length of the list)
+        keep_index = int(len(self) * 0.20)
+        # Slice the list to keep the first 20% of individuals
+        first_20_percent = self[:keep_index]
+
+        #reproduction
+        len_first_20_percent = len(first_20_percent)
+        a = first_20_percent[random.randrange(0,len_first_20_percent)] #chose a parent at random in the first20percents
+        b = first_20_percent[random.randrange(0,len_first_20_percent)]
+
+        x_point = random.randrange(0, len(a.chromosome)) #take a crossing point at random
+        new_chrom = a.chromosome[0:x_point] + b.chromosome[x_point:] #create a new chromosome
+        new_individual = Individual(new_chrom, MATCH.rate_guess(new_chrom))
+
+        #mutation
+        
         pass  # REPLACE WITH YOUR CODE
 
     def show_generation_summary(self):
@@ -78,3 +98,6 @@ class GASolver:
               threshold_fitness
         """
         pass  # REPLACE WITH YOUR CODE
+
+MATCH = mm.MastermindMatch(secret_size=4)
+
