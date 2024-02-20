@@ -60,7 +60,6 @@ class GASolver:
         fitness = MATCH.rate_guess(chromosome)
         new_individual = Individual(chromosome, fitness)
         self._population.append(new_individual)
-        pass  # REPLACE WITH YOUR CODE
 
     def evolve_for_one_generation(self):
         """ Apply the process for one generation : 
@@ -75,13 +74,14 @@ class GASolver:
         #chose the best 20% individuals
         self._population.sort(reverse=True)
         # Calculate the index up to which you want to keep the elements (20% of the length of the list)
-        keep_index = int(len(self) * 0.20)
+        keep_index = int(len(self._population) * self._selection_rate)
         # Slice the list to keep the first 20% of individuals
-        first_20_percent = self[:keep_index]
+        first_20_percent = self._population[:keep_index]
 
         #reproduction
         len_first_20_percent = len(first_20_percent)
-        a = first_20_percent[random.randrange(0,len_first_20_percent)] #chose a parent at random in the first20percents
+        r_stop = random.randrange(0,len_first_20_percent)
+        a = first_20_percent[r_stop] #chose a parent at random in the first20percents
         b = first_20_percent[random.randrange(0,len_first_20_percent)]
 
         x_point = random.randrange(0, len(a.chromosome)) #take a crossing point at random
@@ -94,9 +94,6 @@ class GASolver:
         new_gene = random.choice(valid_colors)
         pos = random.randint(0,len(a.chromosome)-1)
         new_chrom = a.chromosome[0:pos] + [new_gene] + a.chromosome[pos + 1:]
-        
-        
-        pass  # REPLACE WITH YOUR CODE
 
     def show_generation_summary(self):
         """ Print some debug information on the current state of the population """
@@ -104,7 +101,9 @@ class GASolver:
 
     def get_best_individual(self):
         """ Return the best Individual of the population """
-        pass  # REPLACE WITH YOUR CODE
+        self._population.sort(reverse=True)
+        best_indiv = self[0]
+        return best_indiv  # REPLACE WITH YOUR CODE
 
     def evolve_until(self, max_nb_of_generations=500, threshold_fitness=None):
         """ Launch the evolve_for_one_generation function until one of the two condition is achieved : 
@@ -112,11 +111,13 @@ class GASolver:
             - The fitness of the best Individual is greater than or equal to
               threshold_fitness
         """
-        pass  # REPLACE WITH YOUR CODE
         for i in range(max_nb_of_generations):
             self.evolve_for_one_generation()
             if self._population[-1].fitness >= threshold_fitness:
                 break
 
 MATCH = mm.MastermindMatch(secret_size=4)
+solver = GASolver()
+solver.reset_population()
+solver.evolve_until(threshold_fitness=MATCH.max_score())
 
