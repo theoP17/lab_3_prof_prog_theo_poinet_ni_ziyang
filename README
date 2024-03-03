@@ -1,0 +1,54 @@
+############################ genetic_part1 ############################
+
+--> Mastermind Genetic Algorithm
+This part utilizes a genetic algorithm to solve the classic Mastermind game. The algorithm includes selection, crossover, and mutation steps.
+
+*********** Usage ***********
+Run the script solve_mastermind_NI_ZIYANG_THEO_POINET.py
+
+*********** How it Works ***********
+The algorithm generates guesses using a genetic algorithm, evaluates each guess, selects the fittest ones for reproduction, and repeats this process until a correct guess is found.
+
+*********** Algorithm Details ***********
+- Initialize the population
+- Sort the population based on fitness
+- Remove a certain proportion of individuals
+- Reproduce new individuals
+- Mutate new individuals
+- Repeat until a stopping condition is met
+
+*********** Configuration ***********
+Customize the genetic algorithm by adjusting parameters in the GASolver constructor.
+
+############################ genetic_part2 ############################
+
+--> Travelling Salesperson Problem Solver (TSP)
+This part implements a genetic algorithm to solve the Travelling Salesperson Problem (TSP). The algorithm involves selection, crossover, and mutation.
+
+*********** Usage ***********
+Run the script solve_tsp_NI_ZIYANG_THEO_POINET.py
+
+*********** How it Works ***********
+The algorithm generates city sequences using a genetic algorithm, evaluates each sequence, selects the fittest ones for reproduction, and repeats this process until the best route is found.
+
+*********** Algorithm Details ***********
+- Initialize the population
+- Sort the population based on fitness
+- Remove a certain proportion of individuals
+- Reproduce new individuals
+- Mutate new individuals
+- Repeat until a stopping condition is met
+
+*********** Configuration ***********
+Customize the genetic algorithm by adjusting parameters in the GASolver constructor.
+
+############################ genetic_part3 ############################
+
+--> ga_solver
+This part provides a general genetic algorithm implementation to solve defined problems. Define a problem using the GAProblem class and implement four methods. Then, use the GASolver class to solve the problem.
+
+--> Mastermind_problem & tsp_problem
+Given Mastermind and TSP problems are solved using the general implementation.
+
+*********** Contributing and Acknowledgments ***********
+Contributions are welcome! This code was developed as part of a professional programming course at EPF Montpellier.
