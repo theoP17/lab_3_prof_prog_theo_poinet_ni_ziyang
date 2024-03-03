@@ -25,7 +25,7 @@ class MastermindProblem(GAProblem):
     def how_to_compute_fitness(self, chromosome):
         return self.match.rate_guess(chromosome)
 
-    def new_individual_from_2_parents(self, a, b):
+    def create_child_from_parents(self, a, b):
         x_point = random.randrange(0, len(a.chromosome))
         new_chrom = a.chromosome[0:x_point] + b.chromosome[x_point:]
         return Individual(new_chrom, self.match.rate_guess(new_chrom))
@@ -45,9 +45,8 @@ if __name__ == '__main__':
     solver.reset_population()
     solver.evolve_until()
 
-    # print(
-    # f"Best guess {mm.encode_guess(solver.getBestDNA())} {solver.get_best_individual()}")
+
     print(
-        f"Best guess {solver.get_best_individual().chromosome} {solver.get_best_individual()}")
+        f"Best guess {solver.get_best_individual().chromosome} ")
     print(
         f"Problem solved? {match.is_correct(solver.get_best_individual().chromosome)}")

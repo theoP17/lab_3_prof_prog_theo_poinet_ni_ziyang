@@ -27,7 +27,7 @@ class TSProblem(GAProblem):
     def how_to_compute_fitness(self, chromosome):
         return -cities.road_length(self.city_dict, chromosome)
 
-    def new_individual_from_2_parents(self, a, b):
+    def create_child_from_parents(self, a, b):
         x_point = len(a.chromosome) // 2
         new_chrom = a.chromosome[:x_point]
         for city in b.chromosome:

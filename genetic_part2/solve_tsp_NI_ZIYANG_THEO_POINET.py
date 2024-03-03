@@ -65,7 +65,7 @@ class GASolver:
         for _ in range(int(proportion_to_delete)):
             first_parent = random.choice(self._population)
             second_parent = random.choice(self._population)
-            new_chrom = self.new_individual_from_2_parents(first_parent, second_parent)
+            new_chrom = self.create_child_from_parents(first_parent, second_parent)
             self._population.append(new_chrom)
 
         # Mutation
@@ -75,7 +75,7 @@ class GASolver:
 
         self._population.sort()
 
-    def new_individual_from_2_parents(self, a, b):
+    def create_child_from_parents(self, a, b):
         new_chrom = a.chromosome[:len(a.chromosome)//2]
         for city in b.chromosome:
             if city not in new_chrom:

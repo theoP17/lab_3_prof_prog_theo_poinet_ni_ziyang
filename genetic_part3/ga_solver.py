@@ -49,7 +49,7 @@ class GAProblem:
     def random_parent(self, population):
         return random.choice(population)
 
-    def new_individual_from_2_parents(self, a, b):
+    def create_child_from_parents(self, a, b):
         pass
 
     def mutation(self, a):
@@ -97,7 +97,7 @@ class GASolver:
         first_random_parent = self._problem.random_parent(self._population)
         second_random_parent = self._problem.random_parent(self._population)
 
-        self._population = [self._problem.new_individual_from_2_parents(first_random_parent, second_random_parent)
+        self._population = [self._problem.create_child_from_parents(first_random_parent, second_random_parent)
                             for i in range(int(proportion_to_delete))] + self._population
 
         # Mutation

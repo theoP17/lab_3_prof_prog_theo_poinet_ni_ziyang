@@ -61,9 +61,9 @@ class GASolver:
 
         # Reproduction of new individuals // Adding the same number of children as deleted parents
         for _ in range(proportion_to_delete):
-            first_parent = self.random_parent()
-            second_parent = self.random_parent()
-            new_chrom = self.new_individual_from_2_parents(first_parent, second_parent)
+            first_parent = self.select_random_parent()
+            second_parent = self.select_random_parent()
+            new_chrom = self.create_child_from_parents(first_parent, second_parent)
             self._population.append(new_chrom)
 
         # Mutation
@@ -73,7 +73,7 @@ class GASolver:
 
         self._population.sort()
 
-    def new_individual_from_2_parents(self, a, b):
+    def create_child_from_parents(self, a, b):
         """ Generate a new individual from two parents """
         x_point = random.randrange(0, len(a.chromosome))
         new_chrom = a.chromosome[0:x_point] + b.chromosome[x_point:]
@@ -87,7 +87,7 @@ class GASolver:
         new_chrom = a.chromosome[:pos] + [new_gene] + a.chromosome[pos + 1:]
         return Individual(new_chrom, MATCH.rate_guess(new_chrom))
 
-    def random_parent(self):
+    def select_random_parent(self):
         """ Select a random parent from the population """
         return random.choice(self._population)
 
