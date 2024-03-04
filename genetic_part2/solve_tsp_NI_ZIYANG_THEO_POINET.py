@@ -1,12 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Mon Feb 21 11:24:15 2022
-
-@author: agademer & tdrumond
-
-Template for Exercise 1
-(Genetic Algorithm Module Specification)
-"""
 import matplotlib.pyplot as plt
 import cities
 import random
@@ -94,6 +85,13 @@ class GASolver:
         self._population.sort()
         return self._population[-1]
 
+    def show_generation_summary(self):
+        """ Print some debug information on the current state of the population """
+        print("Generation summary:")
+        print(f"Population size: {len(self._population)}")
+        print(f"Best individual: {self.get_best_individual().chromosome}")
+        print(f"Best fitness score: {self.get_best_individual().fitness}")
+
     def evolve_until(self, max_nb_of_generations=500, threshold_fitness=None):
         """ Launch the evolve_for_one_generation function until one of the two conditions is achieved: 
             - Max nb of generations is achieved
@@ -122,5 +120,8 @@ if __name__ == '__main__':
 
     # Draw the cities with the best path found
     cities.draw_cities(city_dict, best.chromosome)
+
+    # Show generation summary
+    solver.show_generation_summary()
 
     plt.savefig('best_path.png')
