@@ -106,6 +106,14 @@ class GASolver:
             if threshold_fitness and self.get_best_individual().fitness >= threshold_fitness:
                 break
 
+    def show_generation_summary(self):
+        """ Print some debug information on the current state of the population """
+        print("Generation summary:")
+        print(f"Population size: {len(self._population)}")
+        print("Individuals:")
+        for idx, individual in enumerate(self._population):
+            print(f"  {idx + 1}. Chromosome: {individual.chromosome}, Fitness score: {individual.fitness}")
+
 if __name__ == '__main__':
     # Initialize the Mastermind match
     MATCH = mm.MastermindMatch(secret_size=4)
@@ -117,7 +125,10 @@ if __name__ == '__main__':
     solver.reset_population()
     solver.evolve_until(threshold_fitness=MATCH.max_score())
 
-    # Get the best individual and check if the problem is solved
+    
+    # Show generation summary
+    solver.show_generation_summary()
+# Get the best individual and check if the problem is solved
     best = solver.get_best_individual()
     print(f"Best guess: {best.chromosome}")
     print(f"Problem solved? {MATCH.is_correct(best.chromosome)}")

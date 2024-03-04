@@ -7,6 +7,7 @@ Created on Thu Feb 18 2022
 Template file for your Exercise 3 submission 
 (GA solving TSP example)
 """
+
 import random
 import cities
 from ga_solver import GAProblem, GASolver, Individual
