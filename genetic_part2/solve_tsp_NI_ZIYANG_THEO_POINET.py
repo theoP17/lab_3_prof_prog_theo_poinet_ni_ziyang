@@ -1,3 +1,13 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Mon Feb 21 11:24:15 2022
+
+@author: agademer & tdrumond
+
+Template for exercise 1
+(genetic algorithm module specification)
+"""
+
 import matplotlib.pyplot as plt
 import cities
 import random
